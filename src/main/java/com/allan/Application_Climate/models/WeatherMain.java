@@ -18,8 +18,11 @@ public class WeatherMain {
     private Main main;
 
     @JsonProperty("weather")
-    private List<Weather> weather;
+    private List<Weather> weatherList;
 
     @JsonProperty("wind")
     private Wind wind;
+
+    @JsonProperty("name")
+    private String city;
 }

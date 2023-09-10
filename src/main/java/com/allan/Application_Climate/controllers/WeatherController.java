@@ -9,18 +9,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/climate")
 public class WeatherController {
+
     @Autowired
     private WeatherService weatherService;
 
+    @GetMapping("home")
+    public String home(){
+        return "MainPage";
+    }
     @GetMapping("/find")
-    public ModelAndView findWeatherCity(@RequestParam(name = "city")String city){
+    public ModelAndView findWeatherWithCity(@RequestParam(name = "city")String city){
         ModelAndView page = new ModelAndView("MainPage");
-        WeatherMain weatherMain = weatherService.findWeatherCity(city);
-        page.addObject("weather",weatherMain);
+        WeatherMain  weatherMain = weatherService.findWeatherCity(city);
+        Optional verifyIsPresent = Optional.of(weatherMain);
 
-        return page;
+        if(verifyIsPresent.isPresent()) {
+            page.addObject("weather",weatherMain);
+            return page;
+        }
+
+        else {
+            page.addObject("error", "Could not find the climate of this city,try again");
+            return page;
+        }
+    }
+
+    @GetMapping("/findwithcoordenates")
+    public ModelAndView findWeatherWithCoordentes(@RequestParam(name = "lat")Double latitude,@RequestParam(name="log") Double logitude){
+        ModelAndView page = new ModelAndView("MainPage");
+        WeatherMain  weatherMain = weatherService.findWeatherWithCoordenates(latitude,logitude);
+        Optional verifyIsPresent = Optional.of(weatherMain);
+
+        if(verifyIsPresent.isPresent()) {
+            page.addObject("weather",weatherMain);
+            return page;
+        }
+        else {
+            page.addObject("error", "Could not find the climate with this coordenates,try again");
+            return page;
+        }
     }
 }
