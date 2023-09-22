@@ -1,9 +1,9 @@
-package com.allan.Application_Climate.models;
+package com.allan.Application_Climate.models.weather_models;
 
-import com.allan.Application_Climate.models.weather_classes.Coord;
-import com.allan.Application_Climate.models.weather_classes.Main;
-import com.allan.Application_Climate.models.weather_classes.Weather;
-import com.allan.Application_Climate.models.weather_classes.Wind;
+import com.allan.Application_Climate.models.weather_models.Coord;
+import com.allan.Application_Climate.models.weather_models.Main;
+import com.allan.Application_Climate.models.weather_models.Weather;
+import com.allan.Application_Climate.models.weather_models.Wind;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
