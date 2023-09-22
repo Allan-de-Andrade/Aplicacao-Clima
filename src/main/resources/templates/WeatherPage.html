@@ -25,13 +25,14 @@
         <p id="error_geolocation"></p>
     </div>
 
+    <h3 th:if="${error}">Could not find the climate with this coordenates,try again</h3>
     <section style=" margin-left: auto;margin-right: auto; margin-top:2%;
     box-shadow:1px 1px 1px rgba(0,0,0,0.16);
     width:50%;
      border-radius: 5%;border-top-style: ridge" th:if="${weather}">
             <div th:each="weatherIndex : ${weather.weatherList}" style="text-align: center;margin-top:2%;margin-bottom:2%">
                 <h3 th:text="${weatherIndex.name}"></h3>
-                <h4 th:text="'City: ' + ${weather.city}"></h4>
+                <h4 th:text="'City: '  +${weather.city}"></h4>
                 <h5 th:text="'Temperature: ' + ${weather.main.temperature}"></h5>
                 <h5 th:text =" 'Wind speed: ' + ${weather.wind.windSpeed}"></h5>
             </div>
@@ -45,20 +46,31 @@
 
     <script>
         error_geolocation = document.getElementById("error_geolocation");
+        options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+        };
+
+        function success(position) {
+            location.href = "/climate/findwithcoordenates?lon=" + position.coords.longitude + "&lat=" + position.coords.latitude;
+        }
+
+        function  error(error) {
+            alert(error);
+        }
+
 
         function getLocation(){
-            if(navigator.geolocation){
-                navigator.geolocation.getCurrentPosition(findClimateWithPosition);
+            if(navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success,error,options)
             }
-            
             else{
                 error_geolocation.innerHTML = "Your browse not supported geolocation";
             }
         }
 
-        function findClimateWithPosition(position){
-            window.location.href = "findwithcoordenates?log=" + position.coords.longitude + "&lat=" + position.coords.latitude;
-        }
+
     </script>
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

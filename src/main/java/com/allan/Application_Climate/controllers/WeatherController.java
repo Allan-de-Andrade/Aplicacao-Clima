@@ -1,6 +1,6 @@
 package com.allan.Application_Climate.controllers;
 
-import com.allan.Application_Climate.models.WeatherMain;
+import com.allan.Application_Climate.models.weather_models.WeatherMain;
 import com.allan.Application_Climate.services.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +22,7 @@ public class WeatherController {
     public String home(){
         return "MainPage";
     }
+
     @GetMapping("/find")
     public ModelAndView findWeatherWithCity(@RequestParam(name = "city")String city){
         ModelAndView page = new ModelAndView("MainPage");
@@ -40,9 +41,9 @@ public class WeatherController {
     }
 
     @GetMapping("/findwithcoordenates")
-    public ModelAndView findWeatherWithCoordentes(@RequestParam(name = "lat")Double latitude,@RequestParam(name="log") Double logitude){
+    public ModelAndView findWeatherWithCoordentes(@RequestParam(name = "lat")Double latitude,@RequestParam(name="lon") Double longitude){
         ModelAndView page = new ModelAndView("MainPage");
-        WeatherMain  weatherMain = weatherService.findWeatherWithCoordenates(latitude,logitude);
+        WeatherMain  weatherMain = weatherService.findWeatherWithCoordenates(longitude,latitude);
         Optional verifyIsPresent = Optional.of(weatherMain);
 
         if(verifyIsPresent.isPresent()) {

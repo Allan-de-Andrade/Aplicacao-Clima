@@ -1,11 +1,8 @@
 package com.allan.Application_Climate.services;
 
-import com.allan.Application_Climate.models.WeatherMain;
+import com.allan.Application_Climate.models.weather_models.WeatherMain;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import javax.swing.text.html.Option;
-import java.util.Optional;
 
 @Service
 public class WeatherService {
@@ -27,8 +24,8 @@ public class WeatherService {
     public WeatherMain findWeatherWithCoordenates(Double longitude,Double latitude){
 
         try {
-            String api_url = "https://api.openweathermap.org/data/2.5/weather?units=metric&lat=" + latitude + "&lon=" + longitude + "&appid=" + API_KEY;
-            WeatherMain weatherMain = new RestTemplate().getForObject(api_url, WeatherMain.class);
+            String api_url = "https://api.openweathermap.org/data/2.5/weather?units=metric&lat=" + latitude + "&lon="+ longitude + "&appid=" + API_KEY;
+            WeatherMain weatherMain = new RestTemplate().getForObject(api_url,WeatherMain.class);
             return weatherMain;
         }
         catch (Exception e){
