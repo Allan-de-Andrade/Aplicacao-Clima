@@ -6,6 +6,6 @@ Aplicação onde mostra o clima do dia na região do usuario ou na região busca
 Tecnologias usadas:
 Java 17
 Spring MVC
-Mock e Jupiter
+OAuth Client
 Git e Github
-Docker
+
