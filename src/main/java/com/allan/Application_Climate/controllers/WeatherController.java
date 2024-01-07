@@ -12,13 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/climate")
+@RequestMapping("/")
 public class WeatherController {
 
     @Autowired
     private WeatherService weatherService;
 
-    @GetMapping("home")
+
+    @GetMapping("/")
     public String home(){
         return "WeatherPage";
     }
