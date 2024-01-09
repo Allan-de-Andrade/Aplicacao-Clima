@@ -1,13 +1,15 @@
 package com.allan.Application_Climate.services;
 
 import com.allan.Application_Climate.models.weather_models.WeatherMain;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class WeatherService {
 
-    final String API_KEY = "d89ea6b6cb81a57791e40ba92381098e";
+        @Value("${api_key}")
+         String API_KEY;
 
     public WeatherMain findWeatherCity(String city){
         try{

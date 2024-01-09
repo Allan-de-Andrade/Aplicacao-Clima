@@ -12,7 +12,7 @@
         </div>
     </nav>
 
-    <form th:action="@{/climate/find}" method="get">
+    <form th:action="@{/find}" method="get">
         <input type="search" name="city" th:value="${search}" class="form-control"  style="margin-right: auto;margin-left:auto;width:50%" placeholder="Search a city ..." >
     </form>
 
@@ -59,13 +59,12 @@
         };
 
         function success(position) {
-            location.href = "/climate/findwithcoordenates?lon=" + position.coords.longitude + "&lat=" + position.coords.latitude;
+            location.href = "/findwithcoordenates?lon=" + position.coords.longitude +  "&lat=" + position.coords.latitude;
         }
 
         function  error(error) {
             alert(error);
         }
-
 
         function getLocation(){
             if(navigator.geolocation) {
