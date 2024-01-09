@@ -42,7 +42,7 @@ public class WeatherController {
     }
 
     @GetMapping("/findwithcoordenates")
-    public ModelAndView findWeatherWithCoordentes(@RequestParam(name = "lat")Double latitude,@RequestParam(name="lon") Double longitude){
+    public ModelAndView findWeatherWithCoordentes(@RequestParam(name="lon") Double longitude,@RequestParam(name = "lat")Double latitude){
         ModelAndView page = new ModelAndView("WeatherPage");
         WeatherMain  weatherMain = weatherService.findWeatherWithCoordenates(longitude,latitude);
         Optional verifyIsPresent = Optional.of(weatherMain);

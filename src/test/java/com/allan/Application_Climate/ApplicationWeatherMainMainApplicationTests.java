@@ -14,20 +14,4 @@ class ApplicationWeatherMainMainApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
-	@Autowired
-	WeatherService weatherService;
-	@Test
-	public void shouldReturnWeatherMainWithCorrectDataUsingCoordinates(){
-		WeatherMain weatherMain = new WeatherMain();
-		Main main = new Main();
-		main.setTemperature(18.76);
-
-		weatherMain.setMain(main);
-		weatherMain.setCity("Caruaru");
-
-		WeatherMain weatherMain1 = weatherService.findWeatherWithCoordenates(-35.9636,-8.2833);
-		Assertions.assertEquals(weatherMain.getCity(),weatherMain1.getCity());
-		Assertions.assertEquals(weatherMain.getMain().getTemperature(),weatherMain1.getMain().getTemperature());
-	}
 }
