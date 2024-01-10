@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Foreacast</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <nav  class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><strong>Weather Forecast</strong></a>
+        </div>
+    </nav>
+
+    <form th:action="@{/find}" method="get">
+        <input type="search" name="city" th:value="${search}" class="form-control"  style="margin-right: auto;margin-left:auto;width:50%" placeholder="Search a city ..." >
+    </form>
+
+    <div class="text-center" style="margin-top:5%" th:if="${weather} == null" >
+        <h3 style="margin-bottom:2%">Search a city or use geolocation for see the Climate</h3>
+        <button  class="btn btn-primary" onclick="getLocation()">Use geolocation</button>
+        <p id="error_geolocation"></p>
+    </div>
+
+    <h3 th:if="${error}">Could not find the climate with this coordenates,try again</h3>
+    <section style=" margin-left: auto;margin-right: auto; margin-top:2%;
+    box-shadow:1px 1px 1px rgba(0,0,0,0.16);
+    width:50%;
+     border-radius: 5%;border-top-style: ridge" th:if="${weather}">
+            <div th:each="weatherIndex : ${weather.weatherList}" style="text-align: center;margin-top:2%;margin-bottom:2%">
+                <h3 th:text="${weatherIndex.name}"></h3>
+                <h4 th:text=" 'City: '  +${weather.city}"></h4>
+
+                <h5 th:text=" 'Temperature: ' + ${weather.main.temperature}"></h5>
+                <h5 th:text=" 'Temperature Maximun:' + ${weather.main.temperatureMax}"></h5>
+                <h5 th:text=" 'Temperature Minimun:' + ${weather.main.temperatureMin}"></h5>
+                <h5 th:text=" 'Temperature Feels:' + ${weather.main.temperatureFeels}"></h5>
+
+                <h5 th:text=" 'Humidity:' + ${weather.main.humidity}"></h5>
+                <h5 th:text=" 'Pressure:' + ${weather.main.pressure}"></h5>
+
+                <h5 th:text =" 'Wind speed: ' + ${weather.wind.windSpeed}"></h5>
+                <h5 th:text = "'Degress Wind:' + ${weather.wind.degressWind}"></h5>
+                <h5 th:text=" 'Gust Wind:' + ${weather.wind.gustWind}" ></h5>
+            </div>
+    </section>
+
+    <footer style="height: 10%;margin-top:10%;"  class="bj-light text-center text-lg-start">
+        <p style="text-align: center">developed by Allan</p>
+        <p style="text-align: center;">credits for data:openweather.com</p>
+    </footer>
+
+    <script>
+        error_geolocation = document.getElementById("error_geolocation");
+        options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+        };
+
+        function success(position) {
+            location.href = "/findwithcoordenates?lon=" + position.coords.longitude +  "&lat=" + position.coords.latitude;
+        }
+
+        function  error(error) {
+            alert(error);
+        }
+
+        function getLocation(){
+            if(navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success,error,options)
+            }
+            else{
+                error_geolocation.innerHTML = "Your browse not supported geolocation";
+            }
+        }
+
+
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>
