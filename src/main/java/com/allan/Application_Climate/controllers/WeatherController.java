@@ -18,13 +18,12 @@ public class WeatherController {
     @Autowired
     private WeatherService weatherService;
 
-
     @GetMapping("/")
     public String home(){
         return "WeatherPage";
     }
 
-    @GetMapping("/find")
+    @GetMapping("/${url_find_weather_with_city}")
     public ModelAndView findWeatherWithCity(@RequestParam(name = "city")String city){
         ModelAndView page = new ModelAndView("WeatherPage");
         WeatherMain  weatherMain = weatherService.findWeatherCity(city);
@@ -41,7 +40,7 @@ public class WeatherController {
         }
     }
 
-    @GetMapping("/findwithcoordenates")
+    @GetMapping("/${url_find_weather_with_coordenates}")
     public ModelAndView findWeatherWithCoordentes(@RequestParam(name="lon") Double longitude,@RequestParam(name = "lat")Double latitude){
         ModelAndView page = new ModelAndView("WeatherPage");
         WeatherMain  weatherMain = weatherService.findWeatherWithCoordenates(longitude,latitude);
