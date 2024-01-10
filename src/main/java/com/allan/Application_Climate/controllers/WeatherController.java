@@ -23,7 +23,7 @@ public class WeatherController {
         return "WeatherPage";
     }
 
-    @GetMapping("/${url_find_weather_with_city}")
+    @GetMapping("/climate/findweatherwithcityname")
     public ModelAndView findWeatherWithCity(@RequestParam(name = "city")String city){
         ModelAndView page = new ModelAndView("WeatherPage");
         WeatherMain  weatherMain = weatherService.findWeatherCity(city);
@@ -40,8 +40,8 @@ public class WeatherController {
         }
     }
 
-    @GetMapping("/${url_find_weather_with_coordenates}")
-    public ModelAndView findWeatherWithCoordentes(@RequestParam(name="lon") Double longitude,@RequestParam(name = "lat")Double latitude){
+    @GetMapping("/climate/findweatherwithcoordenates")
+    public ModelAndView findWeatherWithCoordenates(@RequestParam(name="lon") Double longitude,@RequestParam(name = "lat")Double latitude){
         ModelAndView page = new ModelAndView("WeatherPage");
         WeatherMain  weatherMain = weatherService.findWeatherWithCoordenates(longitude,latitude);
         Optional verifyIsPresent = Optional.of(weatherMain);
