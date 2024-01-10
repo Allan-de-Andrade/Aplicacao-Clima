@@ -1,0 +1,9 @@
+com\allan\Application_Climate\models\weather_models\Main.class
+com\allan\Application_Climate\controllers\WeatherController.class
+com\allan\Application_Climate\models\weather_models\Weather.class
+com\allan\Application_Climate\models\weather_models\Wind.class
+com\allan\Application_Climate\security\SecurityConfiguration.class
+com\allan\Application_Climate\models\weather_models\Coord.class
+com\allan\Application_Climate\services\WeatherService.class
+com\allan\Application_Climate\ApplicationClimateApplication.class
+com\allan\Application_Climate\models\weather_models\WeatherMain.class
