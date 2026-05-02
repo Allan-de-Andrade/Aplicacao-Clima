@@ -1,15 +1,9 @@
 package com.allan.Application_Climate.models.weather_models;
 
-import com.allan.Application_Climate.models.weather_models.Coord;
-import com.allan.Application_Climate.models.weather_models.Main;
-import com.allan.Application_Climate.models.weather_models.Weather;
-import com.allan.Application_Climate.models.weather_models.Wind;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
 
 import java.util.List;
 
-@Data
 public class WeatherMain {
     @JsonProperty("coord")
     private Coord coord;
@@ -25,4 +19,49 @@ public class WeatherMain {
 
     @JsonProperty("name")
     private String city;
+
+    public List<Weather> getWeatherList() {
+        return weatherList;
+    }
+
+    public Coord getCoord() {
+        return this.coord;
+    }
+
+    public Main getMain() {
+        return this.main;
+    }
+
+    public Wind getWind() {
+        return this.wind;
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    @JsonProperty("coord")
+    public void setCoord(Coord coord) {
+        this.coord = coord;
+    }
+
+    @JsonProperty("main")
+    public void setMain(Main main) {
+        this.main = main;
+    }
+
+    @JsonProperty("weather")
+    public void setWeatherList(List<Weather> weatherList) {
+        this.weatherList = weatherList;
+    }
+
+    @JsonProperty("wind")
+    public void setWind(Wind wind) {
+        this.wind = wind;
+    }
+
+    @JsonProperty("name")
+    public void setCity(String city) {
+        this.city = city;
+    }
 }
