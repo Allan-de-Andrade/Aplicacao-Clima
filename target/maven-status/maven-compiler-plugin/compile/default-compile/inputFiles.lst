@@ -1,9 +1,0 @@
-/home/Allan/Documentos/Nova pasta/src/main/java/com/allan/Application_Climate/ApplicationClimateApplication.java
-/home/Allan/Documentos/Nova pasta/src/main/java/com/allan/Application_Climate/security/SecurityConfiguration.java
-/home/Allan/Documentos/Nova pasta/src/main/java/com/allan/Application_Climate/models/weather_models/Coord.java
-/home/Allan/Documentos/Nova pasta/src/main/java/com/allan/Application_Climate/models/weather_models/Main.java
-/home/Allan/Documentos/Nova pasta/src/main/java/com/allan/Application_Climate/services/WeatherService.java
-/home/Allan/Documentos/Nova pasta/src/main/java/com/allan/Application_Climate/controllers/WeatherController.java
-/home/Allan/Documentos/Nova pasta/src/main/java/com/allan/Application_Climate/models/weather_models/WeatherMain.java
-/home/Allan/Documentos/Nova pasta/src/main/java/com/allan/Application_Climate/models/weather_models/Wind.java
-/home/Allan/Documentos/Nova pasta/src/main/java/com/allan/Application_Climate/models/weather_models/Weather.java
